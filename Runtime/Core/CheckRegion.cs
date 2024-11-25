@@ -24,7 +24,7 @@ namespace Unity.Services.Core
         public static async System.Threading.Tasks.Task Checking()
         {
             using HttpClient tmp_Client = new HttpClient();
-            string tmp_APIUrl = "https://ip-api.com";
+            string tmp_APIUrl = "http://ip-api.com/json";
             HttpResponseMessage tmp_Response = await tmp_Client.GetAsync(tmp_APIUrl);
             if (!tmp_Response.IsSuccessStatusCode) return;
             string tmp_JsonResponse = await tmp_Response.Content.ReadAsStringAsync();
