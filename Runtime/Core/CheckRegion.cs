@@ -21,7 +21,7 @@ namespace Unity.Services.Core
         public static IpInfo IpInfo;
         public static bool IsChina;
 
-        static async void Checking()
+        public static async System.Threading.Tasks.Task Checking()
         {
             using HttpClient tmp_Client = new HttpClient();
             string tmp_APIUrl = "https://ip-api.com";
@@ -29,14 +29,7 @@ namespace Unity.Services.Core
             if (!tmp_Response.IsSuccessStatusCode) return;
             string tmp_JsonResponse = await tmp_Response.Content.ReadAsStringAsync();
             IpInfo = JsonConvert.DeserializeObject<IpInfo>(tmp_JsonResponse);
-            IsChina = IpInfo.country == "China";
-            Debug.Log(IpInfo.country);
-        }
-
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        private static void DoCheck()
-        {
-            Checking();
+            IsChina = IpInfo.country == "China";            
         }
     }
 
