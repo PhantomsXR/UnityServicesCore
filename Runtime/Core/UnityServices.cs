@@ -15,8 +15,20 @@ namespace Unity.Services.Core
         /// </summary>
         public static event Action Initialized
         {
-            add { if (Instance != null) { Instance.Initialized += value; } }
-            remove { if (Instance != null) { Instance.Initialized -= value; } }
+            add
+            {
+                if (Instance != null)
+                {
+                    Instance.Initialized += value;
+                }
+            }
+            remove
+            {
+                if (Instance != null)
+                {
+                    Instance.Initialized -= value;
+                }
+            }
         }
 
         /// <summary>
@@ -24,8 +36,20 @@ namespace Unity.Services.Core
         /// </summary>
         public static event Action<Exception> InitializeFailed
         {
-            add { if (Instance != null) { Instance.InitializeFailed += value; } }
-            remove { if (Instance != null) { Instance.InitializeFailed -= value; } }
+            add
+            {
+                if (Instance != null)
+                {
+                    Instance.InitializeFailed += value;
+                }
+            }
+            remove
+            {
+                if (Instance != null)
+                {
+                    Instance.InitializeFailed -= value;
+                }
+            }
         }
 
         /// <summary>
@@ -45,7 +69,8 @@ namespace Unity.Services.Core
             {
                 if (!UnityThreadUtils.IsRunningOnUnityThread)
                 {
-                    throw new ServicesInitializationException("You are attempting to access UnityServices.State from a non-Unity Thread." +
+                    throw new ServicesInitializationException(
+                        "You are attempting to access UnityServices.State from a non-Unity Thread." +
                         " UnityServices.State can only be accessed from Unity Thread");
                 }
 
@@ -97,21 +122,28 @@ namespace Unity.Services.Core
         /// <returns>
         /// Return a handle to the initialization operation.
         /// </returns>
-        [PreserveDependency("Register()", "Unity.Services.Core.Registration.CorePackageInitializer", "Unity.Services.Core.Registration")]
-        [PreserveDependency("CreateStaticInstance()", "Unity.Services.Core.Internal.UnityServicesInitializer", "Unity.Services.Core.Internal")]
-        [PreserveDependency("EnableServicesInitializationAsync()", "Unity.Services.Core.Internal.UnityServicesInitializer", "Unity.Services.Core.Internal")]
+        [PreserveDependency("Register()", "Unity.Services.Core.Registration.CorePackageInitializer",
+            "Unity.Services.Core.Registration")]
+        [PreserveDependency("CreateStaticInstance()", "Unity.Services.Core.Internal.UnityServicesInitializer",
+            "Unity.Services.Core.Internal")]
+        [PreserveDependency("EnableServicesInitializationAsync()",
+            "Unity.Services.Core.Internal.UnityServicesInitializer", "Unity.Services.Core.Internal")]
         [PreserveDependency("CaptureUnityThreadInfo()", "Unity.Services.Core.UnityThreadUtils", "Unity.Services.Core")]
         public static async Task InitializeAsync(InitializationOptions options)
         {
+            await CheckRegion.Checking();
+
             if (!UnityThreadUtils.IsRunningOnUnityThread)
             {
-                throw new ServicesInitializationException("You are attempting to initialize Unity Services from a non-Unity Thread." +
+                throw new ServicesInitializationException(
+                    "You are attempting to initialize Unity Services from a non-Unity Thread." +
                     " Unity Services can only be initialized from Unity Thread");
             }
 
             if (!Application.isPlaying)
             {
-                throw new ServicesInitializationException("You are attempting to initialize Unity Services in Edit Mode." +
+                throw new ServicesInitializationException(
+                    "You are attempting to initialize Unity Services in Edit Mode." +
                     " Unity Services can only be initialized in Play Mode");
             }
 
