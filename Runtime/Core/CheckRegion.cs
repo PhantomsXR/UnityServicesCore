@@ -29,7 +29,7 @@ namespace Unity.Services.Core
             if (!tmp_Response.IsSuccessStatusCode) return;
             string tmp_JsonResponse = await tmp_Response.Content.ReadAsStringAsync();
             IpInfo = JsonConvert.DeserializeObject<IpInfo>(tmp_JsonResponse);
-            IsChina = IpInfo.country == "China";            
+            IsChina = IpInfo.country == "China";
         }
     }
 

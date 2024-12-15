@@ -131,8 +131,6 @@ namespace Unity.Services.Core
         [PreserveDependency("CaptureUnityThreadInfo()", "Unity.Services.Core.UnityThreadUtils", "Unity.Services.Core")]
         public static async Task InitializeAsync(InitializationOptions options)
         {
-            await CheckRegion.Checking();
-
             if (!UnityThreadUtils.IsRunningOnUnityThread)
             {
                 throw new ServicesInitializationException(
@@ -157,6 +155,7 @@ namespace Unity.Services.Core
                 await InstantiationCompletion.Task;
             }
 
+            await CheckRegion.Checking();
             await Instance.InitializeAsync(options);
         }
 
