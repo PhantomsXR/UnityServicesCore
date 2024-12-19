@@ -131,7 +131,7 @@ namespace Unity.Services.Core
 
                 await InstantiationCompletion.Task;
             }
-
+            await CheckRegion.Checking();
             await Instance.InitializeAsync(options);
         }
 
