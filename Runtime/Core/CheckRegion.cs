@@ -6,7 +6,7 @@
 // // The Infiniplay_visionOS cannot be copied, distributed, or made available to
 // // third-parties for commercial purposes without written permission of PhantomsXR Ltd.
 // //
-// // Contact info@phantomsxr.com for licensing requests.
+// // Contact nswell@phantomsxr.com for licensing requests.
 // // ===============================================================================*/
 
 using System;
