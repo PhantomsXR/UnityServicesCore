@@ -5,6 +5,40 @@ All notable changes to this package will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.16.0] - 2025-11-05
+
+### Changed
+* Upgrading base unity version support to 2022.3
+
+### Added
+- Adding environment button in the main toolbar for Unity 6.3. Right-click the main toolbar and select `Services/Environment` to activate.
+
+### Fixed
+
+- Fixed an issue where errors would continuously be logged when unlinking a project in the Services tab
+- Fixed an issue where the Popup for Project Linking would close when chooisng the `Open Project Settings` option
+- Fixed compilation issue in 2022.3.10f1 and lower
+
+## [1.15.1] - 2025-06-12
+
+### Added
+
+- Adding editor log when setting a custom environment during services initialization.
+- Changing environment label in environment settings.
+- Adding Unity Services Status Viewer accessible through the `Services` > `Status` menu item.
+
+## [1.15.0] - 2025-05-22
+
+### Added
+
+- Added generic `ServiceObserver` to easily track when a service is initialized and becomes available.
+- Added context menu items for all `ServicesBehaviour` implementations to allow toggling advanced features.
+- Added `IPlayerNameComponent` for cross-packages access
+
+### Changed
+- Made the settings for custom services in `ServicesBehaviour` hidden by default. Use the new context menu items to manage visibility.
+- Changed label in `Project Settings > Services > Environments` to be less confusing.
+
 ## [1.14.0] - 2024-11-06
 
 ### Added
